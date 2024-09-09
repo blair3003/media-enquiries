@@ -17,7 +17,8 @@ class MediaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->company(),
+            'type' => fake()->randomElement(['Local', 'National', 'Independent', 'Other']),
         ];
     }
 }
