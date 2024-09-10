@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enquiry;
 use App\Http\Requests\StoreEnquiryRequest;
 use App\Http\Requests\UpdateEnquiryRequest;
+use Inertia\Inertia;
 
 class EnquiryController extends Controller
 {
@@ -13,7 +14,15 @@ class EnquiryController extends Controller
      */
     public function index()
     {
-        //
+        $query = Enquiry::with('media', 'reporter', 'category');
+
+        $enquiries = $query
+            ->latest()
+            ->simplePaginate(15);
+
+        return Inertia::render('Enquiry/Index', [
+            'enquiries' => $enquiries
+        ]);
     }
 
     /**

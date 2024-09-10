@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reporter;
 use App\Http\Requests\StoreReporterRequest;
 use App\Http\Requests\UpdateReporterRequest;
+use Inertia\Inertia;
 
 class ReporterController extends Controller
 {
@@ -13,7 +14,15 @@ class ReporterController extends Controller
      */
     public function index()
     {
-        //
+        $query = Reporter::with('media');
+
+        $reporters = $query
+            ->orderBy('name', 'asc')
+            ->paginate(15);
+
+        return Inertia::render('Reporter/Index', [
+            'reporters' => $reporters
+        ]);
     }
 
     /**

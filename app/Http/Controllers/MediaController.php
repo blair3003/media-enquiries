@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Media;
 use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
+use Inertia\Inertia;
 
 class MediaController extends Controller
 {
@@ -13,7 +14,15 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        $query = Media::query();
+
+        $media = $query
+            ->orderBy('name', 'asc')
+            ->simplePaginate(15);
+
+        return Inertia::render('Media/Index', [
+            'media' => $media
+        ]);
     }
 
     /**
