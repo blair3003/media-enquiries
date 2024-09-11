@@ -18,7 +18,7 @@ class EnquiryController extends Controller
 
         $enquiries = $query
             ->latest()
-            ->simplePaginate(15);
+            ->paginate(15);
 
         return Inertia::render('Enquiry/Index', [
             'enquiries' => $enquiries
