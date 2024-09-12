@@ -34,7 +34,7 @@ export default function Index({ auth, enquiries }) {
 
                         <div className="p-6 space-y-4 overflow-auto">
                             <EnquiryTable enquiries={data} />
-                            <PaginationLinks links={links} />
+                            <PaginationLinks links={links} from={from} to={to} total={total} prevPageUrl={prev_page_url} nextPageUrl={next_page_url} />
                         </div>
                     </div>
                 </div>
