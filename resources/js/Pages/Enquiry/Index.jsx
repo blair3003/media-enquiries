@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react'
 import EnquiryTable from '@/Components/EnquiryTable'
 import PaginationLinks from "@/Components/PaginationLinks"
 
-export default function Index({ auth, enquiries }) {
+export default function Index({ auth, enquiries, queryParams }) {
 
     const {
         current_page,
@@ -34,7 +34,7 @@ export default function Index({ auth, enquiries }) {
 
                         <div className="p-6 space-y-4 overflow-auto">
                             <EnquiryTable enquiries={data} />
-                            <PaginationLinks links={links} from={from} to={to} total={total} prevPageUrl={prev_page_url} nextPageUrl={next_page_url} />
+                            <PaginationLinks links={links} from={from} to={to} total={total} prevPageUrl={prev_page_url} nextPageUrl={next_page_url} queryParams={queryParams} />
                         </div>
                     </div>
                 </div>

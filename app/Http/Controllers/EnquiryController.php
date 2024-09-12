@@ -17,11 +17,13 @@ class EnquiryController extends Controller
         $query = Enquiry::with('media', 'reporter', 'category');
 
         $enquiries = $query
+            ->where('archived', '=', false)
             ->latest()
             ->paginate(15);
 
         return Inertia::render('Enquiry/Index', [
-            'enquiries' => $enquiries
+            'enquiries' => $enquiries,
+            'queryParams' => request()->query()
         ]);
     }
 
