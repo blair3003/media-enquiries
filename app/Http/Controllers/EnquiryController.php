@@ -16,14 +16,19 @@ class EnquiryController extends Controller
     {
         $query = Enquiry::with('media', 'reporter', 'category');
 
+        $sortBy = request("sort_by", 'created_at');
+        $sortDir = request("sort_dir", "desc");
+
+        $queryParams = request()->query();
+
         $enquiries = $query
             ->where('archived', '=', false)
-            ->latest()
+            ->orderBy($sortBy, $sortDir)
             ->paginate(15);
 
         return Inertia::render('Enquiry/Index', [
             'enquiries' => $enquiries,
-            'queryParams' => request()->query()
+            'queryParams' => $queryParams
         ]);
     }
 

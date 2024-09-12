@@ -1,7 +1,9 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
+import {useEffect, useState} from "react"
 import { Head } from '@inertiajs/react'
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import EnquiryTable from '@/Components/EnquiryTable'
 import PaginationLinks from "@/Components/PaginationLinks"
+import useRouteSort from "@/Hooks/useRouteSort.jsx"
 
 export default function Index({ auth, enquiries, queryParams }) {
 
@@ -21,6 +23,8 @@ export default function Index({ auth, enquiries, queryParams }) {
         total
     } = enquiries
 
+    const [setSort] = useRouteSort('enquiry.index', queryParams)
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -33,8 +37,9 @@ export default function Index({ auth, enquiries, queryParams }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                         <div className="p-6 space-y-4 overflow-auto">
-                            <EnquiryTable enquiries={data} />
-                            <PaginationLinks links={links} from={from} to={to} total={total} prevPageUrl={prev_page_url} nextPageUrl={next_page_url} queryParams={queryParams} />
+                            <EnquiryTable enquiries={data} setSort={setSort} />
+                            <PaginationLinks links={links} from={from} to={to} total={total} prevPageUrl={prev_page_url}
+                                             nextPageUrl={next_page_url} queryParams={queryParams}/>
                         </div>
                     </div>
                 </div>
