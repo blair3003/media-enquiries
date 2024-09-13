@@ -1,5 +1,6 @@
 import EnquiryTableRow from "@/Components/EnquiryTableRow"
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"
+
 export default function EnquiryTable({ enquiries, setSort })
 {
 
@@ -42,7 +43,7 @@ export default function EnquiryTable({ enquiries, setSort })
             </thead>
 
             <tbody className="divide-y divide-gray-200">
-            {enquiries?.map(enquiry => <EnquiryTableRow key={enquiry.id} enquiry={enquiry} />)}
+                {enquiries?.map(enquiry => <EnquiryTableRow key={enquiry.id} enquiry={enquiry} />)}
             </tbody>
         </table>
     )

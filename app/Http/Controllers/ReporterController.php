@@ -14,14 +14,18 @@ class ReporterController extends Controller
      */
     public function index()
     {
-        $query = Reporter::with('media');
-
-        $reporters = $query
-            ->orderBy('name', 'asc')
+        $reporters = Reporter::with('media')
+            ->orderBy(
+                request("sort_by", 'name'),
+                request("sort_dir", "asc")
+            )
             ->paginate(15);
 
+        $queryParams = request()->query();
+
         return Inertia::render('Reporter/Index', [
-            'reporters' => $reporters
+            'reporters' => $reporters,
+            'queryParams' => $queryParams
         ]);
     }
 

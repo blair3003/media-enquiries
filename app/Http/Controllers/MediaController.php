@@ -14,14 +14,18 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $query = Media::query();
+        $media = Media::query()
+            ->orderBy(
+                request("sort_by", 'name'),
+                request("sort_dir", "asc")
+            )
+            ->paginate(15);
 
-        $media = $query
-            ->orderBy('name', 'asc')
-            ->simplePaginate(15);
+        $queryParams = request()->query();
 
         return Inertia::render('Media/Index', [
-            'media' => $media
+            'media' => $media,
+            'queryParams' => $queryParams
         ]);
     }
 
