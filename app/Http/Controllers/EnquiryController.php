@@ -51,7 +51,9 @@ class EnquiryController extends Controller
      */
     public function show(Enquiry $enquiry)
     {
-        //
+        return Inertia::render('Enquiry/Show', [
+            'enquiry' => $enquiry->load('media', 'reporter', 'category', 'author', 'actions'),
+        ]);
     }
 
     /**

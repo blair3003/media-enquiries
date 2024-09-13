@@ -50,7 +50,9 @@ class ReporterController extends Controller
      */
     public function show(Reporter $reporter)
     {
-        //
+        return Inertia::render('Reporter/Show', [
+            'reporter' => $reporter->load('media', 'enquiries'),
+        ]);
     }
 
     /**

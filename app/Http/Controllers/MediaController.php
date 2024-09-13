@@ -48,9 +48,11 @@ class MediaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Media $media)
+    public function show(Media $medium)
     {
-        //
+        return Inertia::render('Media/Show', [
+            'media' => $medium->load('reporters', 'enquiries'),
+        ]);
     }
 
     /**
