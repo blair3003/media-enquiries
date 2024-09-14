@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Enquiry;
 use App\Http\Requests\EnquiryStoreRequest;
 use App\Http\Requests\EnquiryUpdateRequest;
+use App\Models\Media;
+use App\Models\Reporter;
 use Inertia\Inertia;
 
 class EnquiryController extends Controller
@@ -35,7 +38,11 @@ class EnquiryController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Enquiry/Create', [
+            'categories' => Category::orderBy('name')->get(),
+            'media' => Media::orderBy('name')->get(),
+            'reporters' => Reporter::with('media')->orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -43,7 +50,7 @@ class EnquiryController extends Controller
      */
     public function store(EnquiryStoreRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

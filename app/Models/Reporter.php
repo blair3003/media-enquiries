@@ -23,7 +23,6 @@ class Reporter extends Model
     protected static function boot(): void
     {
         parent::boot();
-
         static::creating(fn ($reporter) => $reporter->active = true);
     }
 

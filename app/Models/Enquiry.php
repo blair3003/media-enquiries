@@ -30,6 +30,12 @@ class Enquiry extends Model
         ];
     }
 
+    protected static function boot(): void
+    {
+        parent::boot();
+        static::creating(fn ($enquiry) => $enquiry->archived = false);
+    }
+
     public function media(): BelongsTo
     {
         return $this->belongsTo(Media::class);

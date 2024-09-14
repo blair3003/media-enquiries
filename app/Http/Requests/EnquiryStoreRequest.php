@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EnquiryStoreRequest extends FormRequest
@@ -11,18 +12,46 @@ class EnquiryStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'subject' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'description' => [
+                'required',
+                'string',
+                'max:5000'
+            ],
+            'category_id' => [
+                'required',
+                'exists:categories,id'
+            ],
+            'media_id' => [
+                'required',
+                'exists:media,id'
+            ],
+            'reporter_id' => [
+                'required',
+                'exists:reporters,id'
+            ],
+            'deadline' => [
+                'required',
+                'date'
+            ],
+            'ooh' => [
+                'boolean'
+            ]
         ];
     }
 }
