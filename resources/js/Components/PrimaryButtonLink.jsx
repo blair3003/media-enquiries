@@ -3,11 +3,11 @@ import { Link } from "@inertiajs/react"
 export default function PrimaryButtonLink({ href, size = "xl", className = '', disabled = false, children, ...props }) {
 
     const styles = {
-        "xl": "px-3.5 py-2.5 text-sm",
-        "lg": "px-3 py-2 text-sm",
-        "md": "px-2.5 py-1.5 text-sm",
-        "sm": "px-2 py-1 text-sm",
-        "xs": "px-2 py-1 text-xs"
+        xl: "px-3.5 py-2.5 text-sm",
+        lg: "px-3 py-2 text-sm",
+        md: "px-2.5 py-1.5 text-sm",
+        sm: "px-2 py-1 text-sm",
+        xs: "px-2 py-1 text-xs"
     }
 
     return (

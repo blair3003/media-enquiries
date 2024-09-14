@@ -37,7 +37,7 @@ export default function Index({ auth, enquiries, queryParams }) {
         >
             <Head title="Enquiries"/>
 
-            <div className="py-12">
+            <div className="py-8">
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <div className="p-6 space-y-4 overflow-auto">

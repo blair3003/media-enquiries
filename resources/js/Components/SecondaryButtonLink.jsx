@@ -1,4 +1,6 @@
-export default function SecondaryButton({ size = 'xl', type = 'button', className = '', disabled, children, ...props }) {
+import { Link } from "@inertiajs/react"
+
+export default function SecondaryButtonLink({ href, size = 'xl', className = '', disabled = false, children, ...props }) {
 
     const styles = {
         xl: "px-3.5 py-2.5 text-sm",
@@ -9,8 +11,8 @@ export default function SecondaryButton({ size = 'xl', type = 'button', classNam
     }
 
     return (
-        <button
-            type={type}
+        <Link
+            href={href}
             className={
                 `rounded-md text-gray-900 bg-white hover:bg-gray-50 font-semibold shadow-sm ring-1 ring-inset ring-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${styles[size]} ${className} ${disabled ? "pointer-events-none opacity-25" : ""}`
             }
@@ -18,6 +20,6 @@ export default function SecondaryButton({ size = 'xl', type = 'button', classNam
             {...props}
         >
             {children}
-        </button>
-    );
+        </Link>
+    )
 }

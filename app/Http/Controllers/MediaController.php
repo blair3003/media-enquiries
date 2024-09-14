@@ -34,7 +34,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Media/Create', []);
     }
 
     /**
@@ -42,7 +42,7 @@ class MediaController extends Controller
      */
     public function store(StoreMediaRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
