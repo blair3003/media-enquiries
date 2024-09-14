@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enquiry;
-use App\Http\Requests\StoreEnquiryRequest;
-use App\Http\Requests\UpdateEnquiryRequest;
+use App\Http\Requests\EnquiryStoreRequest;
+use App\Http\Requests\EnquiryUpdateRequest;
 use Inertia\Inertia;
 
 class EnquiryController extends Controller
@@ -41,7 +41,7 @@ class EnquiryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEnquiryRequest $request)
+    public function store(EnquiryStoreRequest $request)
     {
         //
     }
@@ -67,7 +67,7 @@ class EnquiryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEnquiryRequest $request, Enquiry $enquiry)
+    public function update(EnquiryUpdateRequest $request, Enquiry $enquiry)
     {
         //
     }

@@ -1,12 +1,16 @@
-// noinspection JSCheckFunctionSignatures
-
 import { useForm } from "@inertiajs/react"
 import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
 
-export default function CreateMediaForm() {
+export default function MediaCreateForm() {
 
-    const { data, setData, post, processing, errors } = useForm({
+    const {
+        data,
+        setData,
+        post,
+        processing,
+        errors
+    } = useForm({
         name: ''
     })
 
@@ -24,7 +28,6 @@ export default function CreateMediaForm() {
                     <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4 space-y-2">
                             <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
-
                             <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                 <input
                                     type="text"
@@ -36,7 +39,6 @@ export default function CreateMediaForm() {
                                     required
                                 />
                             </div>
-
                             {errors.name &&
                                 <p className="text-xs text-red-500 font-semibold">{errors.name}</p>
                             }

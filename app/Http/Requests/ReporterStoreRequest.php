@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreMediaRequest extends FormRequest
+class ReporterStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,29 @@ class StoreMediaRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                'max:255',
-                Rule::unique('media')
+                'max:255'
             ],
+            'email' => [
+                'nullable',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('reporters')
+            ],
+            'phone' => [
+                'nullable',
+                'string',
+                'max:255'
+            ],
+            'mobile' => [
+                'nullable',
+                'string',
+                'max:255'
+            ],
+            'media_id' => [
+                'required',
+                'exists:media,id'
+            ]
         ];
     }
 }

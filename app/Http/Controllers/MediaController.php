@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
-use App\Http\Requests\StoreMediaRequest;
-use App\Http\Requests\UpdateMediaRequest;
+use App\Http\Requests\MediaStoreRequest;
+use App\Http\Requests\MediaUpdateRequest;
 use Inertia\Inertia;
 
 class MediaController extends Controller
@@ -40,7 +40,7 @@ class MediaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMediaRequest $request)
+    public function store(MediaStoreRequest $request)
     {
         dd($request);
     }
@@ -66,7 +66,7 @@ class MediaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMediaRequest $request, Media $media)
+    public function update(MediaUpdateRequest $request, Media $media)
     {
         //
     }

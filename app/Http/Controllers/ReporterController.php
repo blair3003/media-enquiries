@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Reporter;
-use App\Http\Requests\StoreReporterRequest;
-use App\Http\Requests\UpdateReporterRequest;
+use App\Http\Requests\ReporterStoreRequest;
+use App\Http\Requests\ReporterUpdateRequest;
 use Inertia\Inertia;
 
 class ReporterController extends Controller
@@ -34,15 +35,17 @@ class ReporterController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Reporter/Create', [
+            'media' => Media::orderBy('name')->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReporterRequest $request)
+    public function store(ReporterStoreRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -66,7 +69,7 @@ class ReporterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReporterRequest $request, Reporter $reporter)
+    public function update(ReporterUpdateRequest $request, Reporter $reporter)
     {
         //
     }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Action;
-use App\Http\Requests\StoreActionRequest;
-use App\Http\Requests\UpdateActionRequest;
+use App\Http\Requests\ActionStoreRequest;
+use App\Http\Requests\ActionUpdateRequest;
 
 class ActionController extends Controller
 {
@@ -27,7 +27,7 @@ class ActionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreActionRequest $request)
+    public function store(ActionStoreRequest $request)
     {
         //
     }
@@ -51,7 +51,7 @@ class ActionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateActionRequest $request, Action $action)
+    public function update(ActionUpdateRequest $request, Action $action)
     {
         //
     }

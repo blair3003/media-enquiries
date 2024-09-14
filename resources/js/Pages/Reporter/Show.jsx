@@ -24,6 +24,15 @@ export default function Show({ auth, reporter })
                             <dt className="font-bold">Name:</dt>
                             <dd>{reporter.name}</dd>
 
+                            <dt className="font-bold">Email:</dt>
+                            <dd>{reporter.email}</dd>
+
+                            <dt className="font-bold">Phone:</dt>
+                            <dd>{reporter.phone}</dd>
+
+                            <dt className="font-bold">Mobile:</dt>
+                            <dd>{reporter.mobile}</dd>
+
                             <dt className="font-bold">Media:</dt>
                             <dd>
                                 <Link
