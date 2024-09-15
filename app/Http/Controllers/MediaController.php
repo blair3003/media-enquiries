@@ -34,7 +34,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Media/Create', []);
+        return Inertia::render('Media/Create');
     }
 
     /**
@@ -58,23 +58,25 @@ class MediaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Media $media)
+    public function edit(Media $medium)
     {
-        //
+        return Inertia::render('Media/Edit', [
+            'media' => $medium
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(MediaUpdateRequest $request, Media $media)
+    public function update(MediaUpdateRequest $request, Media $medium)
     {
-        //
+        dd($request);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Media $media)
+    public function destroy(Media $medium)
     {
         //
     }

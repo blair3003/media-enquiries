@@ -68,7 +68,12 @@ class EnquiryController extends Controller
      */
     public function edit(Enquiry $enquiry)
     {
-        //
+        return Inertia::render('Enquiry/Edit', [
+            'enquiry' => $enquiry,
+            'categories' => Category::orderBy('name')->get(),
+            'media' => Media::orderBy('name')->get(),
+            'reporters' => Reporter::with('media')->orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -76,7 +81,7 @@ class EnquiryController extends Controller
      */
     public function update(EnquiryUpdateRequest $request, Enquiry $enquiry)
     {
-        //
+        dd($request);
     }
 
     /**

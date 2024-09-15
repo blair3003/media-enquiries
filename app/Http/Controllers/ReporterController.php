@@ -63,7 +63,10 @@ class ReporterController extends Controller
      */
     public function edit(Reporter $reporter)
     {
-        //
+        return Inertia::render('Reporter/Edit', [
+            'reporter' => $reporter,
+            'media' => Media::orderBy('name')->get()
+        ]);
     }
 
     /**
@@ -71,7 +74,7 @@ class ReporterController extends Controller
      */
     public function update(ReporterUpdateRequest $request, Reporter $reporter)
     {
-        //
+        dd($request);
     }
 
     /**

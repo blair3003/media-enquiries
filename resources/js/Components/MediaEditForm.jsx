@@ -2,21 +2,21 @@ import { useForm } from "@inertiajs/react"
 import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
 
-export default function MediaCreateForm() {
+export default function MediaEditForm({ media }) {
 
     const {
         data,
         setData,
-        post,
+        patch,
         processing,
         errors
     } = useForm({
-        name: ''
+        name: media.name
     })
 
     const submit = e => {
         e.preventDefault()
-        post(route('media.store'))
+        patch(route('media.update', media.id))
     }
 
     return (
@@ -27,7 +27,7 @@ export default function MediaCreateForm() {
                 <fieldset className="border-b border-gray-900/10 pb-8">
                     <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4 space-y-2">
-                            <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">Name</label>
+                            <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">Name:</label>
                             <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                 <input
                                     type="text"
@@ -49,8 +49,8 @@ export default function MediaCreateForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <SecondaryButtonLink href={route('media.index')}>Cancel</SecondaryButtonLink>
-                <PrimaryButton type="submit" disabled={processing}>Create</PrimaryButton>
+                <SecondaryButtonLink href={route('media.show', media.id)}>Cancel</SecondaryButtonLink>
+                <PrimaryButton type="submit" disabled={processing}>Update</PrimaryButton>
             </div>
 
         </form>

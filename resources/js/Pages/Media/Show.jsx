@@ -20,8 +20,8 @@ export default function Show({ auth, media })
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <div className="p-6">
-                        <dl className="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2">
-                            <dt className="font-bold">Name:</dt>
+                        <dl className="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2 items-baseline">
+                            <dt className="text-sm font-semibold">Name:</dt>
                             <dd>{media.name}</dd>
                         </dl>
                     </div>

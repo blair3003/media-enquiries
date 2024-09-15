@@ -20,20 +20,20 @@ export default function Show({ auth, reporter })
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <div className="p-6">
-                        <dl className="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2">
-                            <dt className="font-bold">Name:</dt>
+                        <dl className="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2 items-baseline">
+                            <dt className="text-sm font-semibold">Name:</dt>
                             <dd>{reporter.name}</dd>
 
-                            <dt className="font-bold">Email:</dt>
+                            <dt className="text-sm font-semibold">Email:</dt>
                             <dd>{reporter.email}</dd>
 
-                            <dt className="font-bold">Phone:</dt>
+                            <dt className="text-sm font-semibold">Phone:</dt>
                             <dd>{reporter.phone}</dd>
 
-                            <dt className="font-bold">Mobile:</dt>
+                            <dt className="text-sm font-semibold">Mobile:</dt>
                             <dd>{reporter.mobile}</dd>
 
-                            <dt className="font-bold">Media:</dt>
+                            <dt className="text-sm font-semibold">Media:</dt>
                             <dd>
                                 <Link
                                     href={route('media.show', reporter.media.id)}
@@ -43,7 +43,7 @@ export default function Show({ auth, reporter })
                                 </Link>
                             </dd>
 
-                            <dt className="font-bold">Active:</dt>
+                            <dt className="text-sm font-semibold">Active:</dt>
                             <dd>{reporter.active ? "✅" : "❌"}</dd>
                         </dl>
                     </div>

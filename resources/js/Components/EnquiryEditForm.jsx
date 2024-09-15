@@ -1,28 +1,30 @@
 import { useForm } from "@inertiajs/react"
 import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
+import { format } from "date-fns"
 
-export default function EnquiryCreateForm({ categories, media, reporters }) {
+export default function EnquiryEditForm({ enquiry, categories, media, reporters }) {
 
     const {
         data,
         setData,
-        post,
+        patch,
         processing,
         errors
     } = useForm({
-        'subject': '',
-        'description': '',
-        'category_id': null,
-        'media_id': null,
-        'reporter_id': null,
-        'deadline': '',
-        'ooh': false
+        'subject': enquiry.subject,
+        'description': enquiry.description,
+        'category_id': enquiry.category_id,
+        'media_id': enquiry.media_id,
+        'reporter_id': enquiry.reporter_id,
+        'deadline': enquiry.deadline ? format(new Date(enquiry.deadline), 'yyyy-MM-dd') : '',
+        'ooh': enquiry.ooh,
+        'archived': enquiry.archived
     })
 
     const submit = e => {
         e.preventDefault()
-        post(route('enquiry.store'))
+        patch(route('enquiry.update', enquiry.id))
     }
 
     return (
@@ -193,6 +195,25 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
                             )}
                         </div>
 
+                        <div className="sm:col-span-4 space-y-2">
+                            <label htmlFor="archived" className="block text-sm font-semibold leading-6 text-gray-900">
+                                Archived
+                            </label>
+                            <div className="flex">
+                                <input
+                                    type="checkbox"
+                                    name="archived"
+                                    id="archived"
+                                    checked={data.archived}
+                                    onChange={e => setData('archived', e.target.checked)}
+                                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-600"
+                                />
+                            </div>
+                            {errors.archived && (
+                                <p className="text-xs text-red-500 font-semibold">{errors.archived}</p>
+                            )}
+                        </div>
+
                     </div>
                 </fieldset>
 
@@ -200,7 +221,7 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
                 <SecondaryButtonLink href={route('enquiry.index')}>Cancel</SecondaryButtonLink>
-                <PrimaryButton type="submit" disabled={processing}>Create</PrimaryButton>
+                <PrimaryButton type="submit" disabled={processing}>Update</PrimaryButton>
             </div>
 
         </form>
