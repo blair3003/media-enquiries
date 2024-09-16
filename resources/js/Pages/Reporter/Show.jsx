@@ -25,7 +25,14 @@ export default function Show({ auth, reporter })
                             <dd>{reporter.name}</dd>
 
                             <dt className="text-sm font-semibold">Email:</dt>
-                            <dd>{reporter.email}</dd>
+                            <dd>
+                                <a
+                                    href={`mailto:${reporter.email}`}
+                                    className="text-indigo-600 font-medium hover:underline"
+                                >
+                                    {reporter.email}
+                                </a>
+                            </dd>
 
                             <dt className="text-sm font-semibold">Phone:</dt>
                             <dd>{reporter.phone}</dd>

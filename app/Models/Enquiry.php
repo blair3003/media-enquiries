@@ -23,18 +23,9 @@ class Enquiry extends Model
         'archived',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'deadline' => 'datetime',
-        ];
-    }
-
-    protected static function boot(): void
-    {
-        parent::boot();
-        static::creating(fn ($enquiry) => $enquiry->archived = false);
-    }
+    protected $casts = [
+        'deadline' => 'datetime',
+    ];
 
     public function media(): BelongsTo
     {
@@ -43,12 +34,12 @@ class Enquiry extends Model
 
     public function reporter(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Reporter::class);
     }
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function category(): BelongsTo

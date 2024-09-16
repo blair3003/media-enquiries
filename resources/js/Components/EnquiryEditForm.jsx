@@ -1,7 +1,8 @@
 import { useForm } from "@inertiajs/react"
 import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
-import { format } from "date-fns"
+import { format, parseISO } from "date-fns"
+import { useEffect } from "react"
 
 export default function EnquiryEditForm({ enquiry, categories, media, reporters }) {
 
@@ -17,7 +18,7 @@ export default function EnquiryEditForm({ enquiry, categories, media, reporters 
         'category_id': enquiry.category_id,
         'media_id': enquiry.media_id,
         'reporter_id': enquiry.reporter_id,
-        'deadline': enquiry.deadline ? format(new Date(enquiry.deadline), 'yyyy-MM-dd') : '',
+        'deadline': enquiry.deadline ? format(parseISO(enquiry.deadline), "yyyy-MM-dd'T'HH:mm") : '',
         'ooh': enquiry.ooh,
         'archived': enquiry.archived
     })
@@ -162,11 +163,11 @@ export default function EnquiryEditForm({ enquiry, categories, media, reporters 
                             <div
                                 className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-sm">
                                 <input
-                                    type="date"
+                                    type="datetime-local"
                                     name="deadline"
                                     id="deadline"
-                                    value={data.deadline}
-                                    onChange={e => setData('deadline', e.target.value)}
+                                    value={data.deadline ? format(parseISO(data.deadline), "yyyy-MM-dd'T'HH:mm") : ''}
+                                    onChange={e => setData('deadline', new Date(e.target.value).toISOString())}
                                     className="block flex-1 border-0 bg-transparent py-2 px-3 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                                     required
                                 />
@@ -220,7 +221,7 @@ export default function EnquiryEditForm({ enquiry, categories, media, reporters 
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <SecondaryButtonLink href={route('enquiry.index')}>Cancel</SecondaryButtonLink>
+                <SecondaryButtonLink href={route('enquiry.show', enquiry.id)}>Cancel</SecondaryButtonLink>
                 <PrimaryButton type="submit" disabled={processing}>Update</PrimaryButton>
             </div>
 

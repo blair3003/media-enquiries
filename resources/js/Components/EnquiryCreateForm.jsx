@@ -1,6 +1,8 @@
 import { useForm } from "@inertiajs/react"
 import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
+import { useEffect } from "react"
+import { format, parseISO } from "date-fns"
 
 export default function EnquiryCreateForm({ categories, media, reporters }) {
 
@@ -24,6 +26,16 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
         e.preventDefault()
         post(route('enquiry.store'))
     }
+
+    const convertDate = e => {
+
+    }
+
+    useEffect(() => {
+        if (data.deadline) {
+            console.log(data.deadline)
+        }
+    }, [data.deadline])
 
     return (
         <form onSubmit={submit}>
@@ -160,11 +172,11 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
                             <div
                                 className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-sm">
                                 <input
-                                    type="date"
+                                    type="datetime-local"
                                     name="deadline"
                                     id="deadline"
-                                    value={data.deadline}
-                                    onChange={e => setData('deadline', e.target.value)}
+                                    value={data.deadline ? format(parseISO(data.deadline), "yyyy-MM-dd'T'HH:mm") : ''}
+                                    onChange={e => setData('deadline', new Date(e.target.value).toISOString())}
                                     className="block flex-1 border-0 bg-transparent py-2 px-3 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                                     required
                                 />

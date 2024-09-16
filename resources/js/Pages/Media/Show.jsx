@@ -23,6 +23,8 @@ export default function Show({ auth, media })
                         <dl className="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2 items-baseline">
                             <dt className="text-sm font-semibold">Name:</dt>
                             <dd>{media.name}</dd>
+                            <dt className="text-sm font-semibold">Type:</dt>
+                            <dd>{media.type}</dd>
                         </dl>
                     </div>
 

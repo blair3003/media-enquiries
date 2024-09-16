@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,7 +22,7 @@ class EnquiryStoreRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'ooh' => $this->has('ooh'),
+            'ooh' => $this->boolean('ooh', false)
         ]);
     }
 

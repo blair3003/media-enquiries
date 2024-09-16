@@ -8,6 +8,7 @@ use App\Http\Requests\EnquiryStoreRequest;
 use App\Http\Requests\EnquiryUpdateRequest;
 use App\Models\Media;
 use App\Models\Reporter;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class EnquiryController extends Controller
@@ -41,7 +42,7 @@ class EnquiryController extends Controller
         return Inertia::render('Enquiry/Create', [
             'categories' => Category::orderBy('name')->get(),
             'media' => Media::orderBy('name')->get(),
-            'reporters' => Reporter::with('media')->orderBy('name')->get()
+            'reporters' => Reporter::with('media')->where('active', '=', true)->orderBy('name')->get()
         ]);
     }
 
@@ -50,7 +51,10 @@ class EnquiryController extends Controller
      */
     public function store(EnquiryStoreRequest $request)
     {
-        dd($request);
+        $enquiry = Auth::user()->enquiries()->create($request->validated());
+
+        return to_route('enquiry.show', $enquiry)
+            ->with('success', 'Enquiry created successfully.');
     }
 
     /**
@@ -72,7 +76,7 @@ class EnquiryController extends Controller
             'enquiry' => $enquiry,
             'categories' => Category::orderBy('name')->get(),
             'media' => Media::orderBy('name')->get(),
-            'reporters' => Reporter::with('media')->orderBy('name')->get()
+            'reporters' => Reporter::with('media')->where('active', '=', true)->orderBy('name')->get()
         ]);
     }
 
@@ -81,7 +85,10 @@ class EnquiryController extends Controller
      */
     public function update(EnquiryUpdateRequest $request, Enquiry $enquiry)
     {
-        dd($request);
+        $enquiry->update($request->validated());
+
+        return to_route('enquiry.show', $enquiry)
+            ->with('success', 'Enquiry updated successfully.');
     }
 
     /**

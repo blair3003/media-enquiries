@@ -20,12 +20,6 @@ class Reporter extends Model
         'active',
     ];
 
-    protected static function boot(): void
-    {
-        parent::boot();
-        static::creating(fn ($reporter) => $reporter->active = true);
-    }
-
     public function media(): BelongsTo
     {
         return $this->belongsTo(Media::class);

@@ -42,7 +42,12 @@ class MediaController extends Controller
      */
     public function store(MediaStoreRequest $request)
     {
-        dd($request);
+        $medium = Media::create($request->validated());
+        dd($medium);
+
+
+        return to_route('media.show', $medium)
+            ->with('success', 'Media created successfully.');
     }
 
     /**
@@ -70,7 +75,10 @@ class MediaController extends Controller
      */
     public function update(MediaUpdateRequest $request, Media $medium)
     {
-        dd($request);
+        $medium->update($request->validated());
+
+        return to_route('media.show', $medium)
+            ->with('success', 'Media updated successfully.');
     }
 
     /**

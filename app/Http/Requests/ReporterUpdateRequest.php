@@ -22,7 +22,7 @@ class ReporterUpdateRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'active' => $this->has('active')
+            'active' => $this->boolean('active', false)
         ]);
     }
 

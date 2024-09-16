@@ -45,7 +45,10 @@ class ReporterController extends Controller
      */
     public function store(ReporterStoreRequest $request)
     {
-        dd($request);
+        $reporter = Reporter::create($request->validated());
+
+        return to_route('reporter.show', $reporter)
+            ->with('success', 'Reporter created successfully.');
     }
 
     /**
@@ -74,7 +77,10 @@ class ReporterController extends Controller
      */
     public function update(ReporterUpdateRequest $request, Reporter $reporter)
     {
-        dd($request);
+        $reporter->update($request->validated());
+
+        return to_route('reporter.show', $reporter)
+            ->with('success', 'Reporter updated successfully.');
     }
 
     /**

@@ -13,7 +13,7 @@ export default function Create({ auth, categories, media, reporters }) {
                 </div>
             }
         >
-            <Head title="Create new Reporter" />
+            <Head title="Create new Enquiry" />
 
             <div className="py-8">
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">

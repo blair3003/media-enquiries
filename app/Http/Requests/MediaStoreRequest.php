@@ -30,6 +30,11 @@ class MediaStoreRequest extends FormRequest
                 'max:255',
                 Rule::unique('media')
             ],
+            'type' => [
+                'required',
+                'string',
+                'max:255'
+            ],
         ];
     }
 }

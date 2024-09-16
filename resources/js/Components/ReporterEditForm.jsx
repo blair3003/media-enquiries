@@ -15,7 +15,8 @@ export default function ReporterEditForm({ reporter, media }) {
         email: reporter.email,
         phone: reporter.phone,
         mobile: reporter.mobile,
-        media_id: reporter.media_id
+        media_id: reporter.media_id,
+        active: reporter.active
     })
 
     const submit = e => {
@@ -108,8 +109,10 @@ export default function ReporterEditForm({ reporter, media }) {
                         </div>
 
                         <div className="sm:col-span-4 space-y-2">
-                            <label htmlFor="media" className="block text-sm font-semibold leading-6 text-gray-900">Media:</label>
-                            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-sm">
+                            <label htmlFor="media"
+                                   className="block text-sm font-semibold leading-6 text-gray-900">Media:</label>
+                            <div
+                                className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-sm">
                                 <select
                                     name="media_id"
                                     id="media"
@@ -132,6 +135,25 @@ export default function ReporterEditForm({ reporter, media }) {
                             {errors.media_id &&
                                 <p className="text-xs text-red-500 font-semibold">{errors.media_id}</p>
                             }
+                        </div>
+
+                        <div className="sm:col-span-4 space-y-2">
+                            <label htmlFor="active" className="block text-sm font-semibold leading-6 text-gray-900">
+                                Active
+                            </label>
+                            <div className="flex">
+                                <input
+                                    type="checkbox"
+                                    name="active"
+                                    id="active"
+                                    checked={data.active}
+                                    onChange={e => setData('active', e.target.checked)}
+                                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-600"
+                                />
+                            </div>
+                            {errors.active && (
+                                <p className="text-xs text-red-500 font-semibold">{errors.active}</p>
+                            )}
                         </div>
                     </div>
                 </fieldset>

@@ -30,6 +30,11 @@ class MediaUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique('media')->ignore($this->medium)
             ],
+            'type' => [
+                'required',
+                'string',
+                'max:255'
+            ],
         ];
     }
 }

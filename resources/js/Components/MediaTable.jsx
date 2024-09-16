@@ -26,6 +26,9 @@ export default function MediaTable({ media, setSort })
                         </button>
                     </div>
                 </th>
+                <th scope="col" className="p-3 text-left text-gray-900">
+                    <div className="font-semibold text-sm">Type</div>
+                </th>
                 <th scope="col" className="">
                     <span className="sr-only">View</span>
                 </th>
@@ -33,7 +36,7 @@ export default function MediaTable({ media, setSort })
             </thead>
 
             <tbody className="divide-y divide-gray-200">
-                {media?.map(m => <MediaTableRow key={m.id} media={m} />)}
+            {media?.map(m => <MediaTableRow key={m.id} media={m}/>)}
             </tbody>
         </table>
     )
