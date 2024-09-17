@@ -3,8 +3,11 @@ import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
 import { useEffect } from "react"
 import { format, parseISO } from "date-fns"
+import useDateTimeFormat from "@/Hooks/useDateTimeFormat"
 
 export default function EnquiryCreateForm({ categories, media, reporters }) {
+
+    const { toLocal, toUTC } = useDateTimeFormat()
 
     const {
         data,
@@ -26,16 +29,6 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
         e.preventDefault()
         post(route('enquiry.store'))
     }
-
-    const convertDate = e => {
-
-    }
-
-    useEffect(() => {
-        if (data.deadline) {
-            console.log(data.deadline)
-        }
-    }, [data.deadline])
 
     return (
         <form onSubmit={submit}>
@@ -175,8 +168,8 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
                                     type="datetime-local"
                                     name="deadline"
                                     id="deadline"
-                                    value={data.deadline ? format(parseISO(data.deadline), "yyyy-MM-dd'T'HH:mm") : ''}
-                                    onChange={e => setData('deadline', new Date(e.target.value).toISOString())}
+                                    value={toLocal(data.deadline)}
+                                    onChange={e => setData('deadline', toUTC(e.target.value))}
                                     className="block flex-1 border-0 bg-transparent py-2 px-3 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                                     required
                                 />

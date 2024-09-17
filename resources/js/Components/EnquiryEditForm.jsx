@@ -1,10 +1,12 @@
 import { useForm } from "@inertiajs/react"
+import { format, parseISO } from "date-fns"
 import SecondaryButtonLink from "@/Components/SecondaryButtonLink"
 import PrimaryButton from "@/Components/PrimaryButton"
-import { format, parseISO } from "date-fns"
-import { useEffect } from "react"
+import useDateTimeFormat from "@/Hooks/useDateTimeFormat"
 
 export default function EnquiryEditForm({ enquiry, categories, media, reporters }) {
+
+    const { toLocal, toUTC } = useDateTimeFormat()
 
     const {
         data,
@@ -18,7 +20,7 @@ export default function EnquiryEditForm({ enquiry, categories, media, reporters 
         'category_id': enquiry.category_id,
         'media_id': enquiry.media_id,
         'reporter_id': enquiry.reporter_id,
-        'deadline': enquiry.deadline ? format(parseISO(enquiry.deadline), "yyyy-MM-dd'T'HH:mm") : '',
+        'deadline': toLocal(enquiry.deadline),
         'ooh': enquiry.ooh,
         'archived': enquiry.archived
     })
@@ -166,8 +168,8 @@ export default function EnquiryEditForm({ enquiry, categories, media, reporters 
                                     type="datetime-local"
                                     name="deadline"
                                     id="deadline"
-                                    value={data.deadline ? format(parseISO(data.deadline), "yyyy-MM-dd'T'HH:mm") : ''}
-                                    onChange={e => setData('deadline', new Date(e.target.value).toISOString())}
+                                    value={toLocal(enquiry.deadline)}
+                                    onChange={e => setData('deadline', toUTC(e.target.value))}
                                     className="block flex-1 border-0 bg-transparent py-2 px-3 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                                     required
                                 />
