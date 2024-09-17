@@ -53,7 +53,10 @@ class ActionController extends Controller
      */
     public function update(ActionUpdateRequest $request, Action $action)
     {
-        //
+        $action->update($request->validated());
+
+        return to_route('enquiry.show', $action->enquiry_id)
+            ->with('success', 'Action status updated.');
     }
 
     /**
@@ -62,5 +65,15 @@ class ActionController extends Controller
     public function destroy(Action $action)
     {
         //
+    }
+
+    public function status(Action $action)
+    {
+        $status = $action->status === "Completed" ? "In Progress" : "Completed";
+
+        $action->update(['status' => $status]);
+
+        return to_route('enquiry.show', $action->enquiry_id)
+            ->with('success', 'Action status updated.');
     }
 }

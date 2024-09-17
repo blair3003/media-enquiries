@@ -63,7 +63,8 @@ class EnquiryController extends Controller
     public function show(Enquiry $enquiry)
     {
         return Inertia::render('Enquiry/Show', [
-            'enquiry' => $enquiry->load('media', 'reporter', 'category', 'author', 'actions'),
+            'enquiry' => $enquiry->load('media', 'reporter', 'category', 'author'),
+            'actions' => $enquiry->actions()->with('author')->orderBy('created_at', 'desc')->get()
         ]);
     }
 

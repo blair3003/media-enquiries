@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('enquiry', EnquiryController::class);
     Route::resource('media', MediaController::class);
     Route::resource('reporter', ReporterController::class);
+    Route::resource('action', ActionController::class);
+    Route::post('/action/{action}/status', [ActionController::class, 'status'])->name('action.status');
 });
 
 
