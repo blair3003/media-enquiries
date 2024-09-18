@@ -3,6 +3,7 @@ import PrimaryButtonLink from "@/Components/PrimaryButtonLink"
 import { Head, Link } from "@inertiajs/react"
 import { format } from "date-fns"
 import ActionsList from "@/Components/ActionsList"
+import ActionCreateForm from "@/Components/ActionCreateForm"
 
 export default function Show({ auth, enquiry, actions })
 {
@@ -78,6 +79,7 @@ export default function Show({ auth, enquiry, actions })
                 </div>
 
                 <div className="">
+                    <ActionCreateForm enquiryId={enquiry.id} />
                     <ActionsList actions={actions}/>
                 </div>
 

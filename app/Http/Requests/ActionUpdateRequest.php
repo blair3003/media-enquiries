@@ -22,8 +22,19 @@ class ActionUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'enquiry_id' => [
+                'required',
+                'exists:enquiries,id'
+            ],
+            'message' => [
+                'required',
+                'string',
+                'max:5000',
+            ],
             'status' => [
-                'string'
+                'required',
+                'string',
+                'max:255',
             ]
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ActionStoreRequest extends FormRequest
@@ -11,18 +12,41 @@ class ActionStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'status' => 'In Progress'
+        ]);
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'enquiry_id' => [
+                'required',
+                'exists:enquiries,id'
+            ],
+            'message' => [
+                'required',
+                'string',
+                'max:5000',
+            ],
+            'status' => [
+                'required',
+                'string',
+                'max:255',
+            ]
         ];
     }
 }

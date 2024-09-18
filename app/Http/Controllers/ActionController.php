@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Action;
 use App\Http\Requests\ActionStoreRequest;
 use App\Http\Requests\ActionUpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ActionController extends Controller
 {
@@ -29,7 +30,10 @@ class ActionController extends Controller
      */
     public function store(ActionStoreRequest $request)
     {
-        //
+        $action = Auth::user()->actions()->create($request->validated());
+
+        return to_route('enquiry.show', $action->enquiry_id)
+            ->with('success', 'Action posted successfully.');
     }
 
     /**
@@ -64,7 +68,10 @@ class ActionController extends Controller
      */
     public function destroy(Action $action)
     {
-        //
+        $action->delete();
+
+        return to_route('enquiry.show', $action->enquiry_id)
+            ->with('success', 'Action deleted successfully.');
     }
 
     public function status(Action $action)

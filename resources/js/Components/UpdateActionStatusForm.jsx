@@ -17,7 +17,7 @@ export default function UpdateActionStatusForm({ id }) {
         <form onSubmit={submit}>
             <button
                 type="submit"
-                className="p-2 text-xs font-medium text-white rounded-full bg-indigo-600"
+                className="p-2 text-xs font-medium text-white rounded-full bg-indigo-600 hover:bg-indigo-700"
                 disabled={processing}
             >
                 <span className="sr-only">Change Status</span>

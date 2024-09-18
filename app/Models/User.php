@@ -53,6 +53,6 @@ class User extends Authenticatable
 
     public function actions(): HasMany
     {
-        return $this->hasMany(Action::class);
+        return $this->hasMany(Action::class, 'author_id');
     }
 }
