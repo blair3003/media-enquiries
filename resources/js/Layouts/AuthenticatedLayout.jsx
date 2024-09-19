@@ -1,9 +1,8 @@
 import { useState } from 'react';
+import { Link } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/react';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -13,17 +12,20 @@ export default function Authenticated({ user, header, children }) {
             <nav className="bg-gray-800">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
-                        <div className="flex items-center">
+                        <div className="flex items-center w-full">
                             <div className="flex-shrink-0">
                                 <Link href="/">
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
 
-                            <div className="hidden md:block">
+                            <div className="hidden md:block flex-1">
                                 <div className="ml-10 flex items-baseline space-x-4">
                                     <NavLink href={route('enquiry.index')} active={route().current('enquiry.index')}>
                                         Enquiries
+                                    </NavLink>
+                                    <NavLink href={route('enquiry.archived')} active={route().current('enquiry.archived')}>
+                                        Archived
                                     </NavLink>
                                     <NavLink href={route('media.index')} active={route().current('media.index')}>
                                         Media
@@ -31,44 +33,18 @@ export default function Authenticated({ user, header, children }) {
                                     <NavLink href={route('reporter.index')} active={route().current('reporter.index')}>
                                         Reporters
                                     </NavLink>
+                                    <NavLink href={route('category.index')} active={route().current('category.index')}>
+                                        Categories
+                                    </NavLink>
                                 </div>
                             </div>
 
                             <div className="hidden md:block">
-                            {/*<div className="ml-4 flex items-center md:ml-6">*/}
-                            {/*    <Dropdown>*/}
-                            {/*        <Dropdown.Trigger>*/}
-                            {/*            <span className="inline-flex rounded-md">*/}
-                            {/*                <button*/}
-                            {/*                    type="button"*/}
-                            {/*                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"*/}
-                            {/*                >*/}
-                            {/*                    {user.name}*/}
-                            {/*    */}
-                            {/*                    <svg*/}
-                            {/*                        className="ms-2 -me-0.5 h-4 w-4"*/}
-                            {/*                        xmlns="http://www.w3.org/2000/svg"*/}
-                            {/*                        viewBox="0 0 20 20"*/}
-                            {/*                        fill="currentColor"*/}
-                            {/*                    >*/}
-                            {/*                        <path*/}
-                            {/*                            fillRule="evenodd"*/}
-                            {/*                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"*/}
-                            {/*                            clipRule="evenodd"*/}
-                            {/*                        />*/}
-                            {/*                    </svg>*/}
-                            {/*                </button>*/}
-                            {/*            </span>*/}
-                            {/*        </Dropdown.Trigger>*/}
-                            {/*    */}
-                            {/*        <Dropdown.Content>*/}
-                            {/*            <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>*/}
-                            {/*            <Dropdown.Link href={route('logout')} method="post" as="button">*/}
-                            {/*                Log Out*/}
-                            {/*            </Dropdown.Link>*/}
-                            {/*        </Dropdown.Content>*/}
-                            {/*    </Dropdown>*/}
-                            {/*</div>*/}
+                                <div className="ml-4 flex items-center md:ml-6">
+                                    <NavLink method="post" href={route('logout')} as="button">
+                                        Log Out
+                                    </NavLink>
+                                </div>
                             </div>
 
                         </div>
@@ -114,29 +90,29 @@ export default function Authenticated({ user, header, children }) {
                         <NavLink href={route('enquiry.index')} active={route().current('enquiry.index')}>
                             Enquiries
                         </NavLink>
+                        <NavLink href={route('enquiry.archived')} active={route().current('enquiry.archived')}>
+                            Archived
+                        </NavLink>
                         <NavLink href={route('media.index')} active={route().current('media.index')}>
                             Media
                         </NavLink>
                         <NavLink href={route('reporter.index')} active={route().current('reporter.index')}>
                             Reporters
                         </NavLink>
+                        <NavLink href={route('category.index')} active={route().current('category.index')}>
+                            Categories
+                        </NavLink>
                     </div>
 
                     <div className="border-t border-gray-700 pb-3 pt-4">
                         <div className="flex items-center px-5">
-                            <div className="flex-shrink-0">
-                                <img className="h-10 w-10 rounded-full"
-                                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                     alt=""/>
-                            </div>
-                            <div className="ml-3">
+                            <div className="">
                                 <div className="text-base font-medium leading-none text-white">{user.name}</div>
                                 <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
                             </div>
                         </div>
 
                         <div className="mt-3 space-y-1 px-2">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Log Out
                             </ResponsiveNavLink>

@@ -43,8 +43,6 @@ class MediaController extends Controller
     public function store(MediaStoreRequest $request)
     {
         $medium = Media::create($request->validated());
-        dd($medium);
-
 
         return to_route('media.show', $medium)
             ->with('success', 'Media created successfully.');

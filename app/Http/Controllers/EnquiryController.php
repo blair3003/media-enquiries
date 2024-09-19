@@ -35,6 +35,27 @@ class EnquiryController extends Controller
     }
 
     /**
+     * Display an archive of the resource.
+     */
+    public function archived()
+    {
+        $enquiries = Enquiry::with('media', 'reporter', 'category')
+            ->where('archived', '=', true)
+            ->orderBy(
+                request("sort_by", 'created_at'),
+                request("sort_dir", "desc")
+            )
+            ->paginate(15);
+
+        $queryParams = request()->query();
+
+        return Inertia::render('Enquiry/Archived', [
+            'enquiries' => $enquiries,
+            'queryParams' => $queryParams
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()

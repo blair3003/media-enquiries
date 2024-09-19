@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
@@ -10,22 +11,20 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('enquiry.index');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))
-        ->name('dashboard');
+    Route::get('/dashboard', function () {
+        return redirect()->route('enquiry.index');
+    })->name('dashboard');
 
+    Route::get('/enquiry/archived', [EnquiryController::class, 'archived'])->name('enquiry.archived');
     Route::resource('enquiry', EnquiryController::class);
     Route::resource('media', MediaController::class);
     Route::resource('reporter', ReporterController::class);
     Route::resource('action', ActionController::class);
+    Route::resource('category', CategoryController::class);
     Route::post('/action/{action}/status', [ActionController::class, 'status'])->name('action.status');
 });
 

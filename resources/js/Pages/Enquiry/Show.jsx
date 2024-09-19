@@ -57,6 +57,9 @@ export default function Show({ auth, enquiry, actions })
                             }
                         </dd>
 
+                        <dt className="font-bold">Created:</dt>
+                        <dd>{format(new Date(enquiry.created_at), 'MMM d, yyyy')}</dd>
+
                         <dt className="font-bold">Deadline:</dt>
                         <dd>{format(new Date(enquiry.deadline), 'MMM d, yyyy')}</dd>
 
@@ -74,7 +77,7 @@ export default function Show({ auth, enquiry, actions })
 
 
             <section className="p-6 my-8 bg-white overflow-hidden shadow-sm sm:rounded-lg space-y-4">
-                <div className="">
+            <div className="">
                     <h3 className="font-semibold text-lg text-gray-800 leading-tight">Actions</h3>
                 </div>
 

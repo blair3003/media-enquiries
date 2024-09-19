@@ -141,7 +141,7 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
                                     id="reporter"
                                     value={data.reporter_id || ''}
                                     onChange={e => setData('reporter_id', e.target.value)}
-                                    className="block flex-1 border-0 bg-transparent py-2 px-3 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
+                                    className="block w-full truncate border-0 bg-transparent py-2 px-3 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
                                 >
                                     <option value="">-- Select --</option>
                                     {reporters && reporters.map(reporter =>
@@ -149,7 +149,7 @@ export default function EnquiryCreateForm({ categories, media, reporters }) {
                                             key={reporter.id}
                                             value={reporter.id}
                                         >
-                                            {reporter.name}
+                                            {reporter.name} ({reporter.media.name})
                                         </option>
                                     )}
                                 </select>
