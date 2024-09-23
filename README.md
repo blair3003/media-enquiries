@@ -2,7 +2,7 @@
 
 **Media Enquiries is an application for recording enquiries made by members of the media. It uses a Laravel backend that serves a React frontend via Inertia and includes standard functionality such as authentication and CRUD resource management.**
 
-[me.bcfleming.com](http://me.bcfleming.com)
+[me.bcfleming.com](http://174.138.43.243/)
 
 ## App details
 
